@@ -112,6 +112,148 @@ test_that("gg_kdmap handles extremely fast off-rates", {
   expect_s3_class(p, "ggplot")
 })
 
+test_that("gg_kdmap validates input parameters correctly", {
+  # Setup valid data
+  valid_data <- data.frame(
+    id = c("A", "B", "C"),
+    ka = c(1e5, 2e5, 3e5),
+    kd = c(1e-3, 2e-3, 3e-3),
+    label_col = c("Label1", "Label2", "Label3"),
+    size_col = c(3, 4, 5),
+    shape_col = c(21, 22, 23),
+    fill_col = c("red", "blue", "green")
+  )
+  
+  # Data validation
+  expect_error(
+    gg_kdmap(data = "not_a_df"),
+    "'data' must be a data frame"
+  )
+  
+  # Labels column validation
+  expect_error(
+    gg_kdmap(data = valid_data, labels = "missing_col"),
+    "Column 'missing_col' not found in data frame"
+  )
+  
+  # ref_id validation
+  expect_error(
+    gg_kdmap(data = valid_data, ref_id = "NotInData"),
+    "Reference ID 'NotInData' not found in data"
+  )
+  
+  # Size validation - neither number nor column
+  expect_error(
+    gg_kdmap(data = valid_data, size = "missing_size_col"),
+    "'size' must be a number or column name in data"
+  )
+  
+  # Shape validation - invalid number
+  expect_error(
+    gg_kdmap(data = valid_data, shape = 99),
+    "'shape' must be between 0 and 25"
+  )
+  
+  # Shape validation - not column name
+  expect_error(
+    gg_kdmap(data = valid_data, shape = "missing_shape"),
+    "'shape' must be a valid shape number or column name in data"
+  )
+  
+  # ref_shape validation
+  expect_error(
+    gg_kdmap(data = valid_data, ref_shape = -1),
+    "'ref_shape' must be between 0 and 25"
+  )
+  
+  # Color/fill validation - neither valid color nor column
+  expect_error(
+    gg_kdmap(data = valid_data, fill = "not_a_color_or_column"),
+    "'fill' must be a valid color or column name in data"
+  )
+  
+  expect_error(
+    gg_kdmap(data = valid_data, color = "invalid_color_xyz"),
+    "'color' must be a valid color or column name in data"
+  )
+  
+  # rep_lines validation
+  expect_error(
+    gg_kdmap(data = valid_data, rep_lines = "yes"),
+    "'rep_lines' must be TRUE or FALSE"
+  )
+  
+  # iso_alpha validation
+  expect_error(
+    gg_kdmap(data = valid_data, iso_alpha = 1.5),
+    "'iso_alpha' must be between 0 and 1"
+  )
+  
+  expect_error(
+    gg_kdmap(data = valid_data, iso_alpha = -0.1),
+    "'iso_alpha' must be between 0 and 1"
+  )
+  
+  # iso_width validation
+  expect_error(
+    gg_kdmap(data = valid_data, iso_width = 0),
+    "'iso_width' must be a positive number"
+  )
+  
+  # iso_type validation
+  expect_error(
+    gg_kdmap(data = valid_data, iso_type = "invalid_type"),
+    "'iso_type' must be one of"
+  )
+  
+  # iso_n validation
+  expect_error(
+    gg_kdmap(data = valid_data, iso_n = 0),
+    "'iso_n' must be a positive number"
+  )
+  
+  # text_padding validation
+  expect_error(
+    gg_kdmap(data = valid_data, text_padding = -1),
+    "'text_padding' must be a non-negative number"
+  )
+  
+  # show_anno validation
+  expect_error(
+    gg_kdmap(data = valid_data, show_anno = "no"),
+    "'show_anno' must be TRUE or FALSE"
+  )
+})
+
+test_that("gg_kdmap handles valid column mappings", {
+  test_data <- data.frame(
+    id = c("A", "B", "C"),
+    ka = c(1e5, 2e5, 3e5),
+    kd = c(1e-3, 2e-3, 3e-3),
+    pt_size = c(3, 4, 5),
+    pt_shape = c(21, 22, 23),
+    pt_fill = c("red", "blue", "green")
+  )
+  
+  # Valid size as column
+  expect_s3_class(
+    gg_kdmap(data = test_data, size = "pt_size"),
+    "ggplot"
+  )
+  
+  # Valid shape as column
+  expect_s3_class(
+    gg_kdmap(data = test_data, shape = "pt_shape"),
+    "ggplot"
+  )
+  
+  # Valid fill as column
+  expect_s3_class(
+    gg_kdmap(data = test_data, fill = "pt_fill"),
+    "ggplot"
+  )
+})
+
 # --------------------------------------------------------------------
 # Additional feature tests
 # --------------------------------------------------------------------
