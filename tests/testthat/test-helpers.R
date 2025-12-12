@@ -845,3 +845,386 @@ test_that("seq_to_mut() double roundtrip consistency", {
   expect_equal(mutant1, mutant2)
   expect_true(compare_mutations(detected_mut1, detected_mut2))
 })
+
+
+# -------------------------------------------------------------------------
+# Tests for melt()
+# -------------------------------------------------------------------------
+
+test_that("melt() converts matrix to long format", {
+  mat <- matrix(1:6, nrow = 2, dimnames = list(c("A", "B"), c("X", "Y", "Z")))
+  result <- melt(mat)
+  
+  expect_s3_class(result, "data.frame")
+  expect_named(result, c("Var1", "Var2", "value"))
+  expect_equal(nrow(result), 6)
+  expect_equal(result$Var1, c("A", "B", "A", "B", "A", "B"))
+  expect_equal(result$Var2, c("X", "X", "Y", "Y", "Z", "Z"))
+  expect_equal(result$value, 1:6)
+})
+
+test_that("melt() handles custom value_name", {
+  mat <- matrix(1:4, nrow = 2)
+  result <- melt(mat, value_name = "custom")
+  
+  expect_named(result, c("Var1", "Var2", "custom"))
+})
+
+test_that("melt() coerces non-matrix input", {
+  df <- data.frame(a = 1:2, b = 3:4)
+  
+  expect_message(result <- melt(df), "not a matrix")
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 4)
+})
+
+test_that("melt() handles empty matrix", {
+  mat <- matrix(numeric(0), nrow = 0, ncol = 0)
+  
+  expect_message(melt(mat), "Input has 0 rows.")
+  expect_equal(nrow(suppressMessages(melt(mat))), 0)
+})
+
+test_that("melt() handles 1x1 matrix", {
+  mat <- matrix(5, dimnames = list("A", "B"))
+  result <- melt(mat)
+  
+  expect_equal(nrow(result), 1)
+  expect_equal(result$value, 5)
+})
+
+
+# -------------------------------------------------------------------------
+# Tests for cor_p()
+# -------------------------------------------------------------------------
+
+test_that("cor_p() computes correlation and p-values", {
+  set.seed(123)
+  data <- data.frame(x = rnorm(20), y = rnorm(20), z = rnorm(20))
+  result <- cor_p(data)
+  
+  expect_type(result, "list")
+  expect_named(result, c("r", "p"))
+  expect_true(is.matrix(result$r))
+  expect_true(is.matrix(result$p))
+  expect_equal(dim(result$r), c(3, 3))
+  expect_equal(dim(result$p), c(3, 3))
+  
+  # Diagonal should be 1 for r, 0 for p
+  expect_equal(unname(diag(result$r)), c(1, 1, 1))
+  expect_equal(unname(diag(result$p)), c(0, 0, 0))
+  
+  # P-values should be between 0 and 1
+  expect_true(all(result$p >= 0 & result$p <= 1))
+})
+
+test_that("cor_p() handles different methods", {
+  data <- data.frame(x = 1:10, y = 1:10, z = 10:1)
+  
+  result_pearson <- cor_p(data, method = "pearson")
+  result_spearman <- cor_p(data, method = "spearman")
+  
+  expect_true(identical(result_pearson$r, result_spearman$r))
+})
+
+test_that("cor_p() handles different methods", {
+  # Use data with outlier where Pearson != Spearman
+  data <- data.frame(
+    x = c(1:9, 100),
+    y = 1:10,
+    z = 10:1
+  )
+  
+  result_pearson <- cor_p(data, method = "pearson")
+  result_spearman <- cor_p(data, method = "spearman")
+  
+  # Should differ due to outlier sensitivity
+  expect_false(identical(result_pearson$r, result_spearman$r))
+})
+
+test_that("cor_p() errors with < 2 columns", {
+  data <- data.frame(x = 1:10)
+  
+  expect_error(cor_p(data), "at least two numeric")
+})
+
+test_that("cor_p() handles complete.obs vs pairwise", {
+  data <- data.frame(
+    x = c(1:9, NA),
+    y = c(NA, 2:10),
+    z = 1:10
+  )
+  
+  result_complete <- cor_p(data, use = "complete.obs")
+  result_pairwise <- cor_p(data, use = "pairwise.complete.obs")
+  
+  # complete.obs should use fewer observations
+  expect_true(all(!is.na(result_complete$r)))
+  expect_true(all(!is.na(result_pairwise$r)))
+})
+
+test_that("cor_p() handles constant columns", {
+  data <- data.frame(x = rep(1, 10), y = 1:10, z = 10:1)
+  suppressWarnings(result <- cor_p(data))
+  
+  # Correlation with constant should be NA
+  expect_true(is.na(result$r[1, 2]))
+})
+
+
+# -------------------------------------------------------------------------
+# Tests for parse_clustal()
+# -------------------------------------------------------------------------
+
+test_that("parse_clustal() parses valid file", {
+  clustal_content <- c(
+    "CLUSTAL W (1.83) multiple sequence alignment",
+    "",
+    "Seq1    ACGT",
+    "Seq2    ACGT",
+    "        ****",
+    "",
+    "Seq1    TGCA",
+    "Seq2    TGCA",
+    "        ****"
+  )
+  
+  temp_file <- tempfile(fileext = ".aln")
+  writeLines(clustal_content, temp_file)
+  on.exit(unlink(temp_file))
+  
+  result <- parse_clustal(temp_file)
+  
+  expect_s3_class(result, "data.frame")
+  expect_named(result, c("name", "sequence"))
+  expect_equal(nrow(result), 2)
+  expect_equal(result$name, c("Seq1", "Seq2"))
+  expect_equal(result$sequence, c("ACGTTGCA", "ACGTTGCA"))
+})
+
+test_that("parse_clustal() replaces gaps with x", {
+  clustal_content <- c(
+    "CLUSTAL",
+    "",
+    "Seq1    AC-T",
+    "Seq2    ACGT"
+  )
+  
+  temp_file <- tempfile(fileext = ".aln")
+  writeLines(clustal_content, temp_file)
+  on.exit(unlink(temp_file))
+  
+  result <- parse_clustal(temp_file)
+  
+  expect_equal(result$sequence[1], "ACxT")
+  expect_equal(result$sequence[2], "ACGT")
+})
+
+test_that("parse_clustal() errors on non-existent file", {
+  expect_error(parse_clustal("nonexistent.aln"), "File not found")
+})
+
+test_that("parse_clustal() errors on empty file", {
+  temp_file <- tempfile(fileext = ".aln")
+  writeLines(character(0), temp_file)
+  on.exit(unlink(temp_file))
+  
+  expect_error(parse_clustal(temp_file), "Empty alignment file")
+})
+
+test_that("parse_clustal() errors when no sequences found", {
+  clustal_content <- c(
+    "CLUSTAL",
+    "",
+    "        ****"
+  )
+  
+  temp_file <- tempfile(fileext = ".aln")
+  writeLines(clustal_content, temp_file)
+  on.exit(unlink(temp_file))
+  
+  expect_error(parse_clustal(temp_file), "No sequences found")
+})
+
+
+# -------------------------------------------------------------------------
+# Tests for parse_fasta()
+# -------------------------------------------------------------------------
+
+test_that("parse_fasta() parses valid file", {
+  fasta_content <- c(
+    ">Seq1",
+    "ACGT",
+    "TGCA",
+    ">Seq2",
+    "GGCC"
+  )
+  
+  temp_file <- tempfile(fileext = ".fasta")
+  writeLines(fasta_content, temp_file)
+  on.exit(unlink(temp_file))
+  
+  result <- parse_fasta(temp_file)
+  
+  expect_type(result, "list")
+  expect_named(result, c("Seq1", "Seq2"))
+  expect_equal(result$Seq1, "ACGTTGCA")
+  expect_equal(result$Seq2, "GGCC")
+})
+
+test_that("parse_fasta() handles single sequence", {
+  fasta_content <- c(
+    ">OnlySeq",
+    "AAAA"
+  )
+  
+  temp_file <- tempfile(fileext = ".fasta")
+  writeLines(fasta_content, temp_file)
+  on.exit(unlink(temp_file))
+  
+  result <- parse_fasta(temp_file)
+  
+  expect_length(result, 1)
+  expect_equal(result$OnlySeq, "AAAA")
+})
+
+test_that("parse_fasta() errors on non-existent file", {
+  expect_error(parse_fasta("nonexistent.fasta"), "File not found")
+})
+
+test_that("parse_fasta() errors on empty file", {
+  temp_file <- tempfile(fileext = ".fasta")
+  writeLines(character(0), temp_file)
+  on.exit(unlink(temp_file))
+  
+  expect_error(parse_fasta(temp_file), "Empty fasta file")
+})
+
+test_that("parse_fasta() errors when no sequences found", {
+  fasta_content <- c("No sequences here")
+  
+  temp_file <- tempfile(fileext = ".fasta")
+  writeLines(fasta_content, temp_file)
+  on.exit(unlink(temp_file))
+  
+  expect_error(parse_fasta(temp_file), "No sequences found")
+})
+
+test_that("parse_fasta() handles empty lines", {
+  fasta_content <- c(
+    ">Seq1",
+    "",
+    "ACGT",
+    "",
+    ">Seq2",
+    "",
+    "TGCA"
+  )
+  
+  temp_file <- tempfile(fileext = ".fasta")
+  writeLines(fasta_content, temp_file)
+  on.exit(unlink(temp_file))
+  
+  result <- parse_fasta(temp_file)
+  
+  expect_equal(result$Seq1, "ACGT")
+  expect_equal(result$Seq2, "TGCA")
+})
+
+
+# -------------------------------------------------------------------------
+# Tests for seq_to_mat()
+# -------------------------------------------------------------------------
+
+test_that("seq_to_mat() works without alignment", {
+  ref <- "ACGT"
+  seqs <- list(
+    wt = "ACGT",
+    mut1 = "ACTT",
+    mut2 = "CCGT"
+  )
+  
+  result <- seq_to_mat(ref, seqs, align = FALSE)
+  
+  expect_s3_class(result, "data.frame")
+  expect_equal(rownames(result), c("wt", "mut1", "mut2"))
+  expect_true("G3" %in% colnames(result))
+  expect_true("A1" %in% colnames(result))
+  
+  # Check values
+  expect_equal(result["mut1", "G3"], "T")
+  expect_equal(result["mut2", "A1"], "C")
+})
+
+test_that("seq_to_mat() works with prepend_pos", {
+  ref <- "ACGT"
+  seqs <- list(mut1 = "ACTT")
+  
+  result <- seq_to_mat(ref, seqs, align = FALSE, prepend_pos = TRUE)
+  
+  expect_equal(result["mut1", "G3"], "G3T")
+})
+
+test_that("seq_to_mat() errors with length mismatch when align=FALSE", {
+  ref <- "ACGT"
+  seqs <- list(mut1 = "ACG")  # Too short
+  
+  expect_error(
+    seq_to_mat(ref, seqs, align = FALSE),
+    "same length as reference"
+  )
+})
+
+test_that("seq_to_mat() works with alignment", {
+  ref <- "ACGT"
+  seqs <- list(
+    mut1 = "ACCGT",  # Insertion
+    mut2 = "ACT"     # Deletion
+  )
+  
+  result <- seq_to_mat(ref, seqs, align = TRUE)
+  
+  expect_s3_class(result, "data.frame")
+  # Should handle indels through alignment
+})
+
+test_that("seq_to_mat() accepts file path", {
+  ref <- "ACGT"
+  fasta_content <- c(
+    ">Seq1",
+    "ACGT",
+    ">Seq2",
+    "ACTT"
+  )
+  
+  temp_file <- tempfile(fileext = ".fasta")
+  writeLines(fasta_content, temp_file)
+  on.exit(unlink(temp_file))
+  
+  result <- seq_to_mat(ref, temp_file, align = FALSE)
+  
+  expect_s3_class(result, "data.frame")
+  expect_equal(rownames(result), c("Seq1", "Seq2"))
+})
+
+test_that("seq_to_mat() returns empty df when no mutations", {
+  ref <- "ACGT"
+  seqs <- list(wt1 = "ACGT", wt2 = "ACGT")
+  
+  result <- seq_to_mat(ref, seqs, align = FALSE)
+  
+  expect_equal(ncol(result), 0)
+  expect_equal(rownames(result), c("wt1", "wt2"))
+})
+
+test_that("seq_to_mat() errors with unnamed list", {
+  ref <- "ACGT"
+  seqs <- list("ACGT", "ACTT")
+  
+  expect_error(seq_to_mat(ref, seqs), "named list")
+})
+
+test_that("seq_to_mat() errors with invalid ref", {
+  expect_error(seq_to_mat("", list(a = "ACG")), "non-empty")
+  expect_error(seq_to_mat(c("A", "B"), list(a = "ACG")), "single")
+})

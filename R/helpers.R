@@ -17,6 +17,12 @@ melt <- function(mat, value_name = "value") {
     message("Input is not a matrix - coercing to matrix before melting.")
     mat <- as.matrix(mat)
   }
+
+  # Check if input is empty
+  if (nrow(mat) == 0) {
+    message("Input has 0 rows.")
+    return(data.frame())
+  }
   
   # Convert to long format
   out <- as.data.frame(as.table(mat), stringsAsFactors = FALSE)

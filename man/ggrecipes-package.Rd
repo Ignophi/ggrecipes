@@ -14,6 +14,7 @@ A collection of custom ggplot2-based visualizations for data exploration and ana
 Useful links:
 \itemize{
   \item \url{https://github.com/Ignophi/ggrecipes}
+  \item \url{https://ignophi.github.io/ggrecipes/}
   \item Report bugs at \url{https://github.com/Ignophi/ggrecipes/issues}
 }
 
