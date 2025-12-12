@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/ggrecipes)](https://CRAN.R-project.org/package=ggrecipes)
+[![Codecov test coverage](https://codecov.io/gh/Ignophi/ggrecipes/graph/badge.svg)](https://app.codecov.io/gh/Ignophi/ggrecipes)
 <!-- badges: end -->
 
 A collection of easy-to-use custom [ggplot2](https://ggplot2.tidyverse.org/index.html)-based functions for data exploration and analysis. Each function handles data preprocessing and returns a ggplot2 object that can be further customized using standard ggplot2 syntax. Includes general-purpose and domain-specific visualizations.
