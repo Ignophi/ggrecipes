@@ -801,35 +801,20 @@ gg_kdmap(data = kinetic_rep, show_anno = TRUE, fill = "id")
 ![](ggrecipes_files/figure-html/unnamed-chunk-28-1.png)
 
 ``` r
+
 # Add labels and highlight reference
-gg_kdmap(
-  data = kinetic_rep,
-  labels = "id",
-  ref_id = "WT",
-  ref_fill = "white",
-  ref_color = "red",
-  fill = "id"
-)
+gg_kdmap(data = kinetic_rep, show_anno = TRUE, fill = "id")
 ```
 
-![](ggrecipes_files/figure-html/unnamed-chunk-29-1.png)
+![](ggrecipes_files/figure-html/unnamed-chunk-28-2.png)
 
 ``` r
+
 # Customize iso-KD lines
-gg_kdmap(
-  data = kinetic_rep,
-  labels = "id",
-  ref_id = "WT",
-  ref_fill = "white",
-  ref_color = "red",
-  fill = "id",
-  iso_n = 12,
-  iso_color = "#7192ad",
-  iso_type = "solid"
-)
+gg_kdmap(data = kinetic_rep, show_anno = TRUE, fill = "id")
 ```
 
-![](ggrecipes_files/figure-html/unnamed-chunk-30-1.png)
+![](ggrecipes_files/figure-html/unnamed-chunk-28-3.png)
 
 See
 [`?gg_kdmap`](https://ignophi.github.io/ggrecipes/reference/gg_kdmap.md)
@@ -853,14 +838,14 @@ p <- gg_splitcorr(data = mtcars, split = "vs")
 p + theme(legend.position = "bottom")
 ```
 
-![](ggrecipes_files/figure-html/unnamed-chunk-31-1.png)
+![](ggrecipes_files/figure-html/unnamed-chunk-29-1.png)
 
 ``` r
 # Theme adjustments
 p + theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](ggrecipes_files/figure-html/unnamed-chunk-32-1.png)
+![](ggrecipes_files/figure-html/unnamed-chunk-30-1.png)
 
 ``` r
 # Labels
@@ -869,7 +854,7 @@ p + labs(title = "Correlation comparison",
   theme(plot.title = element_text(vjust = 3))
 ```
 
-![](ggrecipes_files/figure-html/unnamed-chunk-33-1.png)
+![](ggrecipes_files/figure-html/unnamed-chunk-31-1.png)
 
 ``` r
 # Coordinate transformations
@@ -878,11 +863,11 @@ p + coord_fixed(ratio = 1.5)
 #> ℹ Adding new coordinate system, which will replace the existing one.
 ```
 
-![](ggrecipes_files/figure-html/unnamed-chunk-34-1.png)
+![](ggrecipes_files/figure-html/unnamed-chunk-32-1.png)
 
 ``` r
 # Font adjustments
 p + theme(text = element_text(family = "serif", size = 14))
 ```
 
-![](ggrecipes_files/figure-html/unnamed-chunk-35-1.png)
+![](ggrecipes_files/figure-html/unnamed-chunk-33-1.png)

@@ -11,6 +11,8 @@ Useful links:
 
 - <https://github.com/Ignophi/ggrecipes>
 
+- <https://ignophi.github.io/ggrecipes/>
+
 - Report bugs at <https://github.com/Ignophi/ggrecipes/issues>
 
 ## Author

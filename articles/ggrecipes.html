@@ -790,30 +790,15 @@ with columns for association rate (<code>ka</code>, in
 <span><span class="fu"><a href="../reference/gg_kdmap.html">gg_kdmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kinetic_rep</span>, show_anno <span class="op">=</span> <span class="cn">TRUE</span>, fill <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggrecipes_files/figure-html/unnamed-chunk-28-1.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Add labels and highlight reference</span></span>
-<span><span class="fu"><a href="../reference/gg_kdmap.html">gg_kdmap</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">kinetic_rep</span>,</span>
-<span>  labels <span class="op">=</span> <span class="st">"id"</span>,</span>
-<span>  ref_id <span class="op">=</span> <span class="st">"WT"</span>,</span>
-<span>  ref_fill <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span>  ref_color <span class="op">=</span> <span class="st">"red"</span>,</span>
-<span>  fill <span class="op">=</span> <span class="st">"id"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggrecipes_files/figure-html/unnamed-chunk-29-1.png" class="r-plt" width="700"></p>
+<code class="sourceCode R"><span></span>
+<span><span class="co"># Add labels and highlight reference</span></span>
+<span><span class="fu"><a href="../reference/gg_kdmap.html">gg_kdmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kinetic_rep</span>, show_anno <span class="op">=</span> <span class="cn">TRUE</span>, fill <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggrecipes_files/figure-html/unnamed-chunk-28-2.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Customize iso-KD lines</span></span>
-<span><span class="fu"><a href="../reference/gg_kdmap.html">gg_kdmap</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">kinetic_rep</span>,</span>
-<span>  labels <span class="op">=</span> <span class="st">"id"</span>,</span>
-<span>  ref_id <span class="op">=</span> <span class="st">"WT"</span>,</span>
-<span>  ref_fill <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span>  ref_color <span class="op">=</span> <span class="st">"red"</span>,</span>
-<span>  fill <span class="op">=</span> <span class="st">"id"</span>,</span>
-<span>  iso_n <span class="op">=</span> <span class="fl">12</span>,</span>
-<span>  iso_color <span class="op">=</span> <span class="st">"#7192ad"</span>,</span>
-<span>  iso_type <span class="op">=</span> <span class="st">"solid"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggrecipes_files/figure-html/unnamed-chunk-30-1.png" class="r-plt" width="700"></p>
+<code class="sourceCode R"><span></span>
+<span><span class="co"># Customize iso-KD lines</span></span>
+<span><span class="fu"><a href="../reference/gg_kdmap.html">gg_kdmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kinetic_rep</span>, show_anno <span class="op">=</span> <span class="cn">TRUE</span>, fill <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggrecipes_files/figure-html/unnamed-chunk-28-3.png" class="r-plt" width="700"></p>
 <p>See <code><a href="../reference/gg_kdmap.html">?gg_kdmap</a></code> for replicate line options, reference
 highlighting, label placement, and iso-KD line customization.</p>
 </div>
@@ -832,27 +817,27 @@ to all other functions in this package.</p>
 <span></span>
 <span><span class="co"># Adjust legend</span></span>
 <span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggrecipes_files/figure-html/unnamed-chunk-31-1.png" class="r-plt" width="700"></p>
+<p><img src="ggrecipes_files/figure-html/unnamed-chunk-29-1.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Theme adjustments</span></span>
 <span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggrecipes_files/figure-html/unnamed-chunk-32-1.png" class="r-plt" width="700"></p>
+<p><img src="ggrecipes_files/figure-html/unnamed-chunk-30-1.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Labels</span></span>
 <span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Correlation comparison"</span>, </span>
 <span>         caption <span class="op">=</span> <span class="st">"Data: mtcars"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>vjust <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggrecipes_files/figure-html/unnamed-chunk-33-1.png" class="r-plt" width="700"></p>
+<p><img src="ggrecipes_files/figure-html/unnamed-chunk-31-1.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Coordinate transformations</span></span>
 <span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Coordinate system already present.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Adding new coordinate system, which will replace the existing one.</span></span></code></pre></div>
-<p><img src="ggrecipes_files/figure-html/unnamed-chunk-34-1.png" class="r-plt" width="700"></p>
+<p><img src="ggrecipes_files/figure-html/unnamed-chunk-32-1.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Font adjustments</span></span>
 <span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"serif"</span>, size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggrecipes_files/figure-html/unnamed-chunk-35-1.png" class="r-plt" width="700"></p>
+<p><img src="ggrecipes_files/figure-html/unnamed-chunk-33-1.png" class="r-plt" width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

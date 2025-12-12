@@ -15,34 +15,34 @@ visualizations.
 
 General-purpose visualizations
 
-- [`gg_splitcorr()`](https://ignophi.github.io/ggrecipes/reference/gg_splitcorr.md) -
+- [`gg_splitcorr()`](https://ignophi.github.io/ggrecipes/reference/gg_conf.html) -
   Split-Correlation Heatmap
-- [`gg_rankshift()`](https://ignophi.github.io/ggrecipes/reference/gg_rankshift.md) -
+- [`gg_rankshift()`](https://ignophi.github.io/ggrecipes/reference/gg_rankshift.html) -
   Paired box-/bar- plots with rank change
-- [`gg_criteria()`](https://ignophi.github.io/ggrecipes/reference/gg_criteria.md) -
+- [`gg_criteria()`](https://ignophi.github.io/ggrecipes/reference/gg_criteria.html) -
   Criteria heatmap with optional barplots
-- [`gg_conf()`](https://ignophi.github.io/ggrecipes/reference/gg_conf.md) -
+- [`gg_conf()`](https://ignophi.github.io/ggrecipes/reference/gg_conf.html) -
   Confusion/contingency table bubble plot
 
 **Bioinformatics:**
 
 Sequence analysis and genomics visualizations
 
-- [`gg_geno()`](https://ignophi.github.io/ggrecipes/reference/gg_geno.md) -
+- [`gg_geno()`](https://ignophi.github.io/ggrecipes/reference/gg_geno.html) -
   Biallelic genotype visualization with split tiles and optional
   barplots
-- [`gg_seq()`](https://ignophi.github.io/ggrecipes/reference/gg_seq.md) -
+- [`gg_seq()`](https://ignophi.github.io/ggrecipes/reference/gg_seq.html) -
   Sequence coverage plot with region highlighting
-- [`gg_seqdiff()`](https://ignophi.github.io/ggrecipes/reference/gg_seqdiff.md) -
+- [`gg_seqdiff()`](https://ignophi.github.io/ggrecipes/reference/gg_seqdiff.html) -
   Sequence alignment showing only differences
-- [`gg_biodist()`](https://ignophi.github.io/ggrecipes/reference/gg_biodist.md) -
+- [`gg_biodist()`](https://ignophi.github.io/ggrecipes/reference/gg_biodist.html) -
   Biodistribution plots with easy free-scale faceting
 
 **Chemoinformatics:**
 
 Binding kinetics and drug discovery visualizations
 
-- [`gg_kdmap()`](https://ignophi.github.io/ggrecipes/reference/gg_kdmap.md) -
+- [`gg_kdmap()`](https://ignophi.github.io/ggrecipes/reference/gg_kdmap.html) -
   Kinetic rate maps (association/dissociation) with iso-affinity lines
 
 ## Installation
