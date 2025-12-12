@@ -188,15 +188,6 @@ gg_criteria <- function(data,
                         show_legend = TRUE,
                         quiet = FALSE) {
   
-  # Check for required packages
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("Package 'ggplot2' is required but not installed")
-  }
-  
-  if (!is.null(bar_column) && !requireNamespace("patchwork", quietly = TRUE)) {
-    stop("Package 'patchwork' is required for bar_column but not installed")
-  }
-  
   # Input validation
   if (!is.data.frame(data)) {
     stop("'data' must be a data frame")

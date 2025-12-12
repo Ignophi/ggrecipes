@@ -145,15 +145,6 @@ gg_rankshift <- function(data,
                            decrease = "#4575b4",
                            no_change = "grey50"
                          )) {
-  # Check for required packages
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("Package 'ggplot2' is required but not installed")
-  }
-  
-  if (!requireNamespace("patchwork", quietly = TRUE)) {
-    stop("Package 'patchwork' is required but not installed")
-  }
-  
   # Input validation
   if (!is.data.frame(data)) {
     stop("'data' must be a data frame")

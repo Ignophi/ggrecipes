@@ -80,11 +80,6 @@ gg_conf <- function(data,
                     expand = 0.15,
                     facet_x = NULL,
                     facet_y = NULL) {
-  # Check for required packages
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("Package 'ggplot2' is required but not installed")
-  }
-  
   # Input validation
   if (!is.data.frame(data)) {
     stop("'data' must be a data frame")

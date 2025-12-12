@@ -131,11 +131,6 @@ gg_biodist <- function(data,
                        stat_summary = "mean",
                        error_bars = FALSE,
                        quiet = FALSE) {
-  # Check for required packages
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("Package 'ggplot2' is required but not installed")
-  }
-  
   # Input validation
   if (!is.data.frame(data)) {
     stop("'data' must be a data frame")

@@ -215,11 +215,6 @@ gg_seqdiff <- function(data,
                              face = "plain",
                              color = "black")
                       ) {
-  # Check for ggplot2
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("Package 'ggplot2' is required but not installed")
-  }
-
   # Handle Clustal input
   if (!is.null(clustal)) {
     if (!is.character(clustal) || length(clustal) != 1) {
