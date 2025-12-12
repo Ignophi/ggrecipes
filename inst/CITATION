@@ -1,0 +1,8 @@
+bibentry(
+  bibtype = "Article",
+  title = "ggrecipes: An R Package for Custom Visualizations using ggplot2",
+  author = "Ignophi Hu",
+  journal = "biorxiv",
+  year = 2025,
+  doi = ""
+)

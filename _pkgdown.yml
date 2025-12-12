@@ -1,0 +1,52 @@
+url: ~
+
+template:
+  bootstrap: 5
+  math-rendering: mathjax
+  light-switch: true
+
+development:
+  mode: auto
+
+home:
+  logo: man/figures/logo.png
+
+navbar:
+  structure:
+    left: [intro, reference, articles, tutorials, news]
+    right: [search, github, lightswitch]
+  components:
+    reference:
+      text: Functions
+      href: reference/index.html
+
+figures:
+  dev: png
+  dev.args:
+    bg: "transparent"
+
+reference:
+- title: General
+  desc: General-purpose visualization functions
+  contents:
+  - gg_conf
+  - gg_criteria
+  - gg_rankshift
+  - gg_splitcorr
+
+- title: Bioinformatics
+  desc: Sequence analysis and genomics visualizations
+  contents:
+  - gg_biodist
+  - gg_geno
+  - gg_seq
+  - gg_seqdiff
+
+- title: Chemoinformatics
+  desc: Binding kinetics and drug discovery visualizations
+  contents:
+  - gg_kdmap
+
+extra_files:
+  - man/figures/demo.gif
+
