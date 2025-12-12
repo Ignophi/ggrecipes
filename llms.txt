@@ -15,7 +15,7 @@ visualizations.
 
 General-purpose visualizations
 
-- [`gg_splitcorr()`](https://ignophi.github.io/ggrecipes/reference/gg_conf.html) -
+- [`gg_splitcorr()`](https://ignophi.github.io/ggrecipes/reference/gg_splitcorr.html) -
   Split-Correlation Heatmap
 - [`gg_rankshift()`](https://ignophi.github.io/ggrecipes/reference/gg_rankshift.html) -
   Paired box-/bar- plots with rank change
@@ -63,9 +63,8 @@ devtools::install_github("Ignophi/ggrecipes")
 
 ## Documentation
 
-- [Function reference](https://ignophi.github.io/ggrecipes/reference/)
-- [Vignettes and
-  examples](https://ignophi.github.io/ggrecipes/articles/)
+- [Tutorial](https://ignophi.github.io/ggrecipes/articles/ggrecipes.html)
+- [Functions](https://ignophi.github.io/ggrecipes/reference/)
 
 ## Citation
 
