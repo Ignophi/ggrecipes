@@ -4,12 +4,12 @@ Version: 0.1.0
 Authors@R: 
     person("Ignophi", "Hu", , "ignophi.hu@pm.me", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0002-4094-0868"))
-Description:  A collection of custom ggplot2-based visualizations for 
+Description: A collection of custom ggplot2-based visualizations for 
     data exploration and analysis. Each function handles data 
     preprocessing and returns a ggplot2 object that can be further 
     customized using standard ggplot2 syntax.
 License: MIT + file LICENSE
-URL: https://github.com/Ignophi/ggrecipes
+URL: https://github.com/Ignophi/ggrecipes, https://ignophi.github.io/ggrecipes/
 BugReports: https://github.com/Ignophi/ggrecipes/issues
 Imports:
     ggplot2,
