@@ -16,7 +16,7 @@ A collection of easy-to-use custom [ggplot2](https://ggplot2.tidyverse.org/index
 
 General-purpose visualizations
 
-- [`gg_splitcorr()`](https://ignophi.github.io/ggrecipes/reference/gg_conf.html) - Split-Correlation Heatmap 
+- [`gg_splitcorr()`](https://ignophi.github.io/ggrecipes/reference/gg_splitcorr.html) - Split-Correlation Heatmap 
 - [`gg_rankshift()`](https://ignophi.github.io/ggrecipes/reference/gg_rankshift.html) - Paired box-/bar- plots with rank change
 - [`gg_criteria()`](https://ignophi.github.io/ggrecipes/reference/gg_criteria.html) - Criteria heatmap with optional barplots
 - [`gg_conf()`](https://ignophi.github.io/ggrecipes/reference/gg_conf.html) - Confusion/contingency table bubble plot
@@ -53,8 +53,8 @@ devtools::install_github("Ignophi/ggrecipes")
 
 ## Documentation
 
-- [Function reference](https://ignophi.github.io/ggrecipes/reference/)
-- [Vignettes and examples](https://ignophi.github.io/ggrecipes/articles/)
+- [Tutorial](https://ignophi.github.io/ggrecipes/articles/ggrecipes.html)
+- [Functions](https://ignophi.github.io/ggrecipes/reference/)
 
 ## Citation
 
