@@ -68,7 +68,7 @@ A ggplot2 object showing the split-correlation heatmap. The plot displays:
 \item Lower triangle: correlations for the second level of the split variable
 \item Diagonal line separating the two triangles
 \item Group labels indicating which split level is shown in each triangle
-\item Correlation values displayed only for significant pairs (p ≤ 0.05 after adjustment)
+\item Correlation values displayed only for significant pairs (p < 0.05 after adjustment)
 \item Color gradient representing correlation strength (-1 to 1)
 \item Optional point size (if \code{style = "point"}) indicating absolute correlation strength
 }

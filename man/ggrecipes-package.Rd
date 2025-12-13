@@ -20,7 +20,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Ignophi Hu \email{ignophi.hu@pm.me} (\href{https://orcid.org/0009-0002-4094-0868}{ORCID})
+\strong{Maintainer}: Ignophi Hu \email{ignophi.hu@pm.me} (\href{https://orcid.org/0009-0002-4094-0868}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
