@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Ignophi Hu**. Author, maintainer.
+- **Ignophi Hu**. Author, maintainer, copyright holder.
   [](https://orcid.org/0009-0002-4094-0868)
 
 ## Citation

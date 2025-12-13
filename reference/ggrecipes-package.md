@@ -18,4 +18,4 @@ Useful links:
 ## Author
 
 **Maintainer**: Ignophi Hu <ignophi.hu@pm.me>
-([ORCID](https://orcid.org/0009-0002-4094-0868))
+([ORCID](https://orcid.org/0009-0002-4094-0868)) \[copyright holder\]
