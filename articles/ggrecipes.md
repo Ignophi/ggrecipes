@@ -1,4 +1,4 @@
-# Getting Started with ggrecipes
+# Examples
 
 This vignette provides a **quick visual overview** of available
 functions. Use the sidebar to jump to sections of interest. For complete

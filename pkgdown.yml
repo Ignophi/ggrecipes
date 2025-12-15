@@ -3,7 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   ggrecipes: ggrecipes.html
-last_built: 2025-12-13T06:45Z
+last_built: 2025-12-15T15:38Z
 urls:
   reference: https://ignophi.github.io/ggrecipes/reference
   article: https://ignophi.github.io/ggrecipes/articles
