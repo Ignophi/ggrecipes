@@ -1,8 +1,8 @@
 ---
-title: "Getting Started with ggrecipes"
+title: "Examples"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting Started with ggrecipes}
+  %\VignetteIndexEntry{Examples}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
