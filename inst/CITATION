@@ -2,7 +2,9 @@ bibentry(
   bibtype = "Article",
   title = "ggrecipes: An R Package for Custom Visualizations using ggplot2",
   author = "Ignophi Hu",
-  journal = "biorxiv",
+  journal = "bioRxiv",
   year = 2025,
-  doi = ""
+  doi = "10.64898/2025.12.18.694217",
+  url = "https://www.biorxiv.org/content/10.64898/2025.12.18.694217v1",
+  note = "Preprint"
 )

@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A collection of custom ggplot2-based visualizations for data exploration and analysis. Each function handles data preprocessing and returns a ggplot2 object that can be further customized using standard ggplot2 syntax.
+A collection of custom 'ggplot2'-based visualizations for data exploration and analysis. Each function handles data preprocessing and returns a object that can be further customized using standard 'ggplot2' syntax.
 }
 \seealso{
 Useful links:

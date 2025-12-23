@@ -41,7 +41,6 @@ Binding kinetics and drug discovery visualizations
 
 Install from CRAN:
 ```r
-# currently unavailable - initial submission in progress
 install.packages("ggrecipes")
 ```
 
@@ -60,7 +59,16 @@ devtools::install_github("Ignophi/ggrecipes")
 
 If you use ggrecipes in your work, please cite:
 ```
-[Citation information will be added upon publication]
+bibentry(
+  bibtype = "Article",
+  title = "ggrecipes: An R Package for Custom Visualizations using ggplot2",
+  author = "Ignophi Hu",
+  journal = "bioRxiv",
+  year = 2025,
+  doi = "10.64898/2025.12.18.694217",
+  url = "https://www.biorxiv.org/content/10.64898/2025.12.18.694217v1",
+  note = "Preprint"
+)
 ```
 
 ## License
