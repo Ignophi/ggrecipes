@@ -110,7 +110,7 @@ displays:
 
 - Group labels indicating which split level is shown in each triangle
 
-- Correlation values displayed only for significant pairs (p \< 0.05
+- Correlation values displayed only for significant pairs (p ≤ 0.05
   after adjustment)
 
 - Color gradient representing correlation strength (-1 to 1)

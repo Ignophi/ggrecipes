@@ -1,8 +1,8 @@
 # ggrecipes: Recipes for Data Visualization
 
-A collection of custom ggplot2-based visualizations for data exploration
-and analysis. Each function handles data preprocessing and returns a
-ggplot2 object that can be further customized using standard ggplot2
+A collection of custom 'ggplot2'-based visualizations for data
+exploration and analysis. Each function handles data preprocessing and
+returns a object that can be further customized using standard 'ggplot2'
 syntax.
 
 ## See also
